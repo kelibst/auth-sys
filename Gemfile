@@ -17,7 +17,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'email_validator'
-gem 'knock'
+gem 'knock', git: 'https://github.com/nsarno/knock', branch: 'master', ref: '9214cd027422df8dc31eb67c60032fbbf8fc100b'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
