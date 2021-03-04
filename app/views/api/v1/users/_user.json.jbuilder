@@ -6,6 +6,7 @@ json.body do
   json.lastName user.lastname
   json.email user.email
   json.isAdmin user.isAdmin
+  json.email_confirmation user.verified
 end
 
 json.dates do
