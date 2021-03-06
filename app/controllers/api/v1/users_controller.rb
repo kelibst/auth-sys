@@ -24,6 +24,8 @@ module Api
       def create
         @user = User.new(user_params)
         if @user.save
+          #byebug
+          UserNotifierMailer.send_signup_email(@user).deliver
           render :show, status: :created
         else
           render json: @user.errors, status: :unprocessable_entity
@@ -35,6 +37,7 @@ module Api
       def update
         if current__user.isAdmin || current__user == @user
           if @user.update(user_params)
+            UserNotifierMailer.send_signup_email(@user).deliver
             render :show, status: :ok
           else
             render json: @user.errors, status: :unprocessable_entity
