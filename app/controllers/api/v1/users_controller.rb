@@ -24,7 +24,6 @@ module Api
       def create
         @user = User.new(user_params)
         if @user.save
-          #byebug
           UserNotifierMailer.send_signup_email(@user).deliver
           render :show, status: :created
         else
@@ -37,6 +36,7 @@ module Api
       def update
         if current__user.isAdmin || current__user == @user
           if @user.update(user_params)
+           setToken
             UserNotifierMailer.send_signup_email(@user).deliver
             render :show, status: :ok
           else
@@ -65,11 +65,28 @@ module Api
         end
       end
 
+      def confirm_email
+        @user = User.find_by!(confirm_token: params[:id])
+        
+        @user.verified = true
+        @user.confirm_token = nil
+        @user.save!
+        render :show, status: :ok
+
+      end
+
       private
 
       # Use callbacks to share common setup or constraints between actions.
       def set_user
         @user = User.find(params[:id])
+      end
+
+      def setToken
+        if @user.confirm_token.blank?
+          @user.confirm_token = SecureRandom.urlsafe_base64.to_s
+          @user.save!
+      end
       end
 
       # Only allow a list of trusted parameters through.

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_create :confirmation_token
     has_secure_password
   
     validates :username, uniqueness: true, presence: true, length: { in: 3..200 }
@@ -8,14 +9,17 @@ class User < ApplicationRecord
   
     scope :ordered_by_most_recent, -> { order(created_at: :desc) }
   
-    # def user_favs(user, houses)
-    #   favs = []
-    #   houses.each do |house|
-    #     user.favorites.each do |fav|
-    #       favs.push(house) if house.id == fav.house_id
-    #     end
-    #   end
-    #   favs
-    # end
+    def email_activate
+      self.email_confirmed = true
+      self.confirm_token = nil
+      save!(:validate => false)
+    end
+
+    private 
+    def confirmation_token
+      if self.confirm_token.blank?
+          self.confirm_token = SecureRandom.urlsafe_base64.to_s
+      end
+    end
   end
   

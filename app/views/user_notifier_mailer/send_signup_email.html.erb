@@ -4,8 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Thanks for signing up!</h1>
-    <p>Thanks for joining and have a great day! Now sign in and do
-awesome things!</p>
+    <h1>Thanks for signing up! <%= @user.firstname %>,</h1>
+   
+    <p>Thanks for registering! To confirm your registration click the URL below.</p> 
+    <%=  confirm_email_api_v1_user_url(@user.confirm_token) %>
   </body>
 </html>
