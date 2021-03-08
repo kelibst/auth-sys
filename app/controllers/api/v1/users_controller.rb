@@ -2,7 +2,8 @@ module Api
   module V1
     class UsersController < ApplicationController
       before_action :set_user, only: %i[show update destroy]
-      before_action :authenticate_user, except: [:create]
+      before_action :authenticate_user, except: [:create, :confirm_email]
+      
 
       # GET /users
       # GET /users.json
@@ -36,7 +37,9 @@ module Api
       # PATCH/PUT /users/1.json
       def update
         if current__user.isAdmin || current__user == @user
-          if @user.update(user_params)
+          if @user.update(user_update_params)
+          #   setToken
+          # UserNotifierMailer.send_signup_email(@user).deliver
             render :show, status: :ok
           else
             render json: @user.errors, status: :unprocessable_entity
@@ -66,12 +69,15 @@ module Api
 
       def confirm_email
         @user = User.find_by!(confirm_token: params[:id])
-        
-        @user.verified = true
-        @user.confirm_token = nil
-        @user.save!
-        render :show, status: :ok
-
+        byebug
+        if @user 
+          @user.verified = true
+          @user.confirm_token = nil
+          @user.save!
+          render :show, status: :ok
+        else 
+          render json: 'Sorry you are not allowed to perform this operation.', status: :unprocessable_entity
+        end
       end
 
       private
@@ -94,6 +100,12 @@ module Api
                                      :email, 
                                      :password,
                                      :password_confirmation,
+                                     :firstname,
+                                     :lastname,)
+      end
+
+      def user_update_params
+        params.require(:user).permit(:username,
                                      :firstname,
                                      :lastname,)
       end
