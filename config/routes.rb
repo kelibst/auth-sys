@@ -9,8 +9,8 @@ Rails.application.routes.draw do
           get :confirm_email
         end
       end
-      post 'password/forgot', to: 'password#forgot'
-      post 'password/reset', to: 'password#reset'
+      post 'password/forgot', to: 'passwords#forgot'
+      post 'password/reset', to: 'passwords#reset'
       
       post '/create/signup', to: 'users#create' 
       post '/auth/signin', to: 'user_token#create'
