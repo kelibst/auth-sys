@@ -2,7 +2,6 @@ module Api
     module V1
     class PasswordsController < ApplicationController
         def forgot
-          byebug
             if params[:email].blank? # check if email is present
               return render json: {error: "Email not present"}
             end
@@ -12,6 +11,7 @@ module Api
             if user.present?
               user.generate_password_token! #generate pass token
               # SEND EMAIL HERE
+              PasswordResetMailer.send_password_reset_email(user).deliver
               render json: {status: "ok"}, status: :ok
             else
               render json: {error: ["Email address not found. Please check and try again."]}, status: :not_found
