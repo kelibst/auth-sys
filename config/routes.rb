@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   post 'user_token' => 'user_token#create'
   namespace :api do
     namespace :v1 do 
       get '/dashboard/:username', to: 'users#find_user', as: 'user_detail'
-      # get '/user/:id/favorites', to: 'users#user_favorites', as: 'user_favorites'
       resources :users do
         member do
           get :confirm_email
