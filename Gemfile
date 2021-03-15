@@ -22,13 +22,13 @@ gem 'knock', git: 'https://github.com/nsarno/knock', branch: 'master', ref: '921
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.4', require: false
+gem 'bootsnap'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 gem 'rswag'
-
+gem 'figaro'
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'rspec-rails'
@@ -40,7 +40,7 @@ end
 
 group :development do
   gem 'listen', '~> 3.3'
-  gem 'figaro'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
