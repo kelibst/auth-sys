@@ -69,7 +69,6 @@ module Api
 
       def confirm_email
         @user = User.find_by!(confirm_token: params[:id])
-        byebug
         if @user 
           @user.verified = true
           @user.confirm_token = nil
