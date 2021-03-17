@@ -7,6 +7,10 @@
     <h6>Thanks for signing up! <%= @user.firstname %>,</h6>
    
     <p>Thanks for registering! To confirm your registration click the URL below.</p> 
+    <p>Your confirm token is <%= (@user.confirm_token) %></p>
     <%=  confirm_email_api_v1_user_url(@user.confirm_token) %>
+
+    If the link above does not work, Kindly copy the token below and paste it onto your client page.
+    <p>Your confirmation token is <%= (@user.confirm_token) %></p>
   </body>
 </html>
