@@ -1,0 +1,15 @@
+current directory: /home/kelib/Desktop/auth-sys/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.7.3/ext/bootsnap
+/home/kelib/.rbenv/versions/2.7.2/bin/ruby -I /home/kelib/.rbenv/versions/2.7.2/lib/ruby/2.7.0 -r ./siteconf20210328-26771-1ftblso.rb extconf.rb
+creating Makefile
+
+current directory: /home/kelib/Desktop/auth-sys/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.7.3/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /home/kelib/Desktop/auth-sys/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.7.3/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.so
+
+current directory: /home/kelib/Desktop/auth-sys/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.7.3/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bootsnap.so ./.gem.20210328-26771-1jn6xm1/bootsnap
