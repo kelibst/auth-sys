@@ -26,7 +26,6 @@ gem 'bootsnap'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 
-  gem 'rswag'
   gem 'figaro'
   gem 'factory_bot_rails'
   gem 'rspec-rails'

@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'swagger_helper'
+
 
 RSpec.describe User, type: :model do
   it 'should test that the user is valid' do
